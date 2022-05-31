@@ -1,2 +1,4 @@
 rootProject.name = 'mybroker'
+include 'back-office'
+include 'front-api'
 
