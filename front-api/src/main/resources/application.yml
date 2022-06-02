@@ -1,0 +1,32 @@
+server:
+  port: 9090
+
+
+spring:
+  profiles: default
+
+
+---
+
+spring:
+  profiles: develop
+
+
+
+
+---
+
+
+spring:
+  profiles: staging
+
+
+---
+
+
+
+spring:
+  profiles: production
+
+
+---

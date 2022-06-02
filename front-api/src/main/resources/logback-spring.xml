@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+    <!-- 콘솔 로그 추가 -->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- 롤링 파일 로그 추가 -->
+    <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>/app/logs/front-api/front-api.%d{yyyyMMdd}.log</FileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.exchange" level="INFO">
+        <springProfile name="default">
+            <appender-ref ref="consoleLog"/>
+        </springProfile>
+        <springProfile name="develop">
+            <appender-ref ref="fileLog"/>
+        </springProfile>
+        <springProfile name="staging">
+            <appender-ref ref="fileLog"/>
+        </springProfile>
+        <springProfile name="production">
+            <appender-ref ref="fileLog"/>
+        </springProfile>
+    </logger>
+
+    <!-- root level -->
+    <root level="WARN">
+        <springProfile name="default">
+            <appender-ref ref="consoleLog"/>
+        </springProfile>
+        <springProfile name="develop">
+            <appender-ref ref="fileLog"/>
+        </springProfile>
+        <springProfile name="staging">
+            <appender-ref ref="fileLog"/>
+        </springProfile>
+        <springProfile name="production">
+            <appender-ref ref="fileLog"/>
+        </springProfile>
+    </root>
+
+</configuration>
