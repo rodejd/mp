@@ -6,9 +6,5 @@ import org.springframework.stereotype.Service;
 public class CommonService {
 
 
-    public String test(){
 
-        return "SEX";
-
-    }
 }
