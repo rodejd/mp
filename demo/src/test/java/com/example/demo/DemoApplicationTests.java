@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.parameters.P;
 import org.springframework.util.LinkedMultiValueMap;
 
 import java.util.*;
@@ -356,6 +357,91 @@ class DemoApplicationTests {
         } else {
             return "L";
         }
+
+    }
+
+
+    @Test
+    public void highScoreReturn(){
+
+        int[] score = {10, 100, 20, 150, 1, 100, 200};
+        int k = 3;
+
+        int[] result = new int[score.length];
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+
+        int temp = 0;
+
+        for(int i = 0; i < score.length; i++) {
+
+            priorityQueue.add(score[i]);
+            if (priorityQueue.size() > k) {
+                priorityQueue.poll();
+            }
+
+            result[i] = priorityQueue.peek();
+        }
+
+        System.out.println(Arrays.toString(result));
+
+    }
+
+
+    @Test
+    public void orangeSmallCheck(){
+
+       /* int[] arr = new int[10000001];
+        for(int i = 0; i < tangerine.length; i++){
+            arr[tangerine[i]]++;
+        }
+        Arrays.sort(arr);
+        int sum = 0;
+        int answer = 0;
+        for(int i = arr.length-1; i >= 0; i--){
+            sum += arr[i];
+            answer++;
+            if(sum >= k){
+                break;
+            }
+        }*/
+
+/*
+        int k = 2;
+        int[] tangerine = {1, 1, 1, 1, 2, 2, 2, 3};*/
+
+
+
+        int k = 6;
+        int[] tangerine = {5, 3, 3, 5, 5, 5, 2, 3};
+
+        int result = 0;
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int i : tangerine){
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        List<Map.Entry<Integer, Integer>> list = new LinkedList<>(map.entrySet());
+
+        list.sort((e1, e2) -> e2.getValue() - e1.getValue());
+
+        for(Map.Entry<Integer, Integer> i : list){
+            k -= i.getValue();
+            result++;
+            if(k >= 0){
+                break;
+            }
+        }
+
+        System.out.println(result);
+
+
+
+
+
+
 
     }
 
