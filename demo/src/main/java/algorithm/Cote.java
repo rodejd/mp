@@ -82,8 +82,8 @@ public class Cote {
 
 
     /*
-    *배열 값 쌍 이루기
-    * */
+     *배열 값 쌍 이루기
+     * */
     public void arrayCompare() {
 
         String answer = "";
@@ -121,17 +121,17 @@ public class Cote {
 
 
     /*
-    * 한글로 변환하기
-    * */
-    public void checkHangeul(){
+     * 한글로 변환하기
+     * */
+    public void checkHangeul() {
 
         String value = "one162twosixfour5five";
 
-        String[] check = {"one","two","three","four","five","six","seven","eight","nine"};
+        String[] check = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
         StringBuilder sb = new StringBuilder();
 
-        for(int i = 0; i < check.length; i++){
+        for (int i = 0; i < check.length; i++) {
             value = value.replaceAll(check[i], Integer.toString(i));
             System.out.println(Integer.toString(i));
         }
@@ -143,19 +143,19 @@ public class Cote {
 
 
     /*
-    * 음수 양수 확인함수
-    * */
-    public void minusPlusCheck(){
+     * 음수 양수 확인함수
+     * */
+    public void minusPlusCheck() {
 
 
-        int[] test = {1,2,3,4,5,6,7,8,9};
-        String[] testS = {"true","false","true","false","true","false","true","false","true"};
+        int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        String[] testS = {"true", "false", "true", "false", "true", "false", "true", "false", "true"};
         boolean check = true;
 
         int result = 0;
 
-        for(int i : test){
-            test[i] = testS[i].equals("false") ? test[i] * -1 :  test[i];
+        for (int i : test) {
+            test[i] = testS[i].equals("false") ? test[i] * -1 : test[i];
             result += test[i];
         }
 
@@ -165,9 +165,32 @@ public class Cote {
     }
 
 
+    public void antAttack(int hp) {
+        int answer = 0;
 
+        int general = 5;
+        int sodier = 3;
+        int worker = 1;
 
+        while (hp == 0) {
 
+            if(hp % general == 0){
+                answer++;
+                hp -= general;
+            }
+            else if(hp % sodier == 0){
+                answer++;
+                hp -= general;
+            }
+            else {
+                answer++;
+                hp -= worker;
+            }
+        }
+
+        System.out.println(answer);
+
+    }
 
 
 }

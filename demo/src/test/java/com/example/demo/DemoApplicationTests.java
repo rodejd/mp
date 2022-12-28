@@ -278,14 +278,13 @@ class DemoApplicationTests {
 
 
         /*
-        *
-        * [1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5]	"right"	"LRLLLRLLRRL"  LRLLLRLLRRL
-        * [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2]	"left"	"LRLLRRLLLRR" LRLLRRLLLRR
-        * [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]	"right"	"LLRLLRLLRL"
-        *
-        *
-        * */
-
+         *
+         * [1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5]	"right"	"LRLLLRLLRRL"  LRLLLRLLRRL
+         * [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2]	"left"	"LRLLRRLLLRR" LRLLRRLLLRR
+         * [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]	"right"	"LLRLLRLLRL"
+         *
+         *
+         * */
 
 
         for (int i = 0; i < numbers.length; i++) {
@@ -334,10 +333,10 @@ class DemoApplicationTests {
 
     public String getDistance(int[] leftNow, int[] rightNow, String hand, int[] num) {
 
-        if(leftNow[0] == num[0] && leftNow[1] == num[1]){
+        if (leftNow[0] == num[0] && leftNow[1] == num[1]) {
             return "L";
         }
-        if(rightNow[0] == num[0] && rightNow[1] == num[1]){
+        if (rightNow[0] == num[0] && rightNow[1] == num[1]) {
             return "R";
         }
 
@@ -362,7 +361,7 @@ class DemoApplicationTests {
 
 
     @Test
-    public void highScoreReturn(){
+    public void highScoreReturn() {
 
         int[] score = {10, 100, 20, 150, 1, 100, 200};
         int k = 3;
@@ -373,7 +372,7 @@ class DemoApplicationTests {
 
         int temp = 0;
 
-        for(int i = 0; i < score.length; i++) {
+        for (int i = 0; i < score.length; i++) {
 
             priorityQueue.add(score[i]);
             if (priorityQueue.size() > k) {
@@ -389,7 +388,7 @@ class DemoApplicationTests {
 
 
     @Test
-    public void orangeSmallCheck(){
+    public void orangeSmallCheck() {
 
        /* int[] arr = new int[10000001];
         for(int i = 0; i < tangerine.length; i++){
@@ -411,7 +410,6 @@ class DemoApplicationTests {
         int[] tangerine = {1, 1, 1, 1, 2, 2, 2, 3};*/
 
 
-
         int k = 6;
         int[] tangerine = {5, 3, 3, 5, 5, 5, 2, 3};
 
@@ -419,7 +417,7 @@ class DemoApplicationTests {
 
         Map<Integer, Integer> map = new HashMap<>();
 
-        for(int i : tangerine){
+        for (int i : tangerine) {
             map.put(i, map.getOrDefault(i, 0) + 1);
         }
 
@@ -427,23 +425,283 @@ class DemoApplicationTests {
 
         list.sort((e1, e2) -> e2.getValue() - e1.getValue());
 
-        for(Map.Entry<Integer, Integer> i : list){
+        for (Map.Entry<Integer, Integer> i : list) {
             k -= i.getValue();
             result++;
-            if(k >= 0){
+            if (k >= 0) {
                 break;
             }
         }
 
         System.out.println(result);
+    }
+
+
+    @Test
+    public void antAttack() {
+//        int answer = 0;
+
+        int general = 5;
+        int sodier = 3;
+
+        int hp = 19;
+
+        /*while(hp != 0){
+
+            if(hp >= general){
+                hp -= general;
+                answer++;
+                continue;
+            }
+
+            if(hp >= sodier){
+                hp -= sodier;
+                answer++;
+
+            } else {
+                hp --;
+                answer++;
+            }
+
+        }*/
+
+        int answer = hp / 5;
+        hp %= 5;
+
+        answer += hp / 3;
+        hp %= 3;
+
+        answer += hp / 1;
+
+
+        System.out.println(answer);
+
+    }
+
+
+    @Test
+    public void aeiou() {
+
+        String my_string = "bus";
+        String[] answer = {"a", "e", "i", "o", "u"};
+
+        Iterator temp = Arrays.stream(answer).iterator();
+        while (temp.hasNext()) {
+            my_string = my_string.replaceAll(String.valueOf(temp.next()), "");
+        }
+        System.out.println(my_string);
+
+
+    }
+
+    @Test
+    public void reverseOrder() {
+
+        int a = 12345;
+
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(a).reverse();
+
+        int[] answer = new int[sb.length()];
+
+        for (int i = 0; i < sb.length(); i++) {
+            answer[i] = Integer.parseInt(sb.substring(i, i + 1));
+        }
+
+        System.out.println(Arrays.toString(answer));
+
+
+    }
+
+
+    @Test
+    public void upperLowerCase() {
+
+        String s = "abc abc abc ";
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+
+            if (i % 2 == 0) {
+                result.append(String.valueOf(s.charAt(i)).toUpperCase(Locale.ROOT));
+            } else {
+                result.append(String.valueOf(s.charAt(i)).toLowerCase(Locale.ROOT));
+            }
+
+        }
+
+        System.out.printf(result.toString());
+
+    }
+
+    @Test
+    public void compareTwoNumberArrays() {
+
+
+        String t = "500220839878";
+        String p = "7";
+
+        int answer = 0;
+
+        for (int i = 0; i < t.length() - p.length() + 1; i++) {
+            System.out.println(p.length() + i);
+            if (Long.parseLong(t.substring(i, p.length() + i)) <= Long.parseLong(p)){
+                answer++;
+            };
+        }
+
+
+        System.out.println( "answer : " + answer);
+
+//        String[] a = {t.substring(0,2), }
+
+
+    }
+
+
+    @Test
+    public void removeStringPair(){
+        int answer = 0;
+
+        String s = "abbcdaadca";
+
+        Stack<Character> stack = new Stack<>();
+
+        for(int i = 0; i < s.length(); i++){
+
+            char c = s.charAt(i);
+
+            if(!stack.isEmpty() || stack.peek().equals(c)){
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+
+        if(stack.size() == 0) {
+            answer = 1;
+        }
+
+        System.out.println(answer);
+
+    }
+
+    @Test
+    public void postBox(){
+
+        Stack<Integer> subStack = new Stack<>();
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+        int[] order = {4,3,1,2,5};
+        int answer = 0;
+        int nowBox = 1;
+
+        for(int i = 1; i <= order.length; i++){
+            queue.add(order[i]);
+        }
 
 
 
+        System.out.println(answer);
+
+
+    }
+
+
+    @Test
+    public void asdasd(){
+        int[] order = {4,3,1,2,5};
+        int answer = 0;
+        Stack<Integer> assistance = new Stack<>();
+        int i = 0;
+
+        for(int box = 1; box <= order.length; box++)
+        {
+            if(order[i] != box)
+            {
+                assistance.add(box);
+                continue;
+            }
+
+            i++;
+            answer++;
+
+            while (assistance.size() != 0 && order[i] == assistance.peek())
+            {
+                assistance.pop();
+                i++;
+                answer++;
+            }
+        }
+
+        System.out.println(answer);
+
+    }
+
+
+    @Test
+    public void findPair(){
+
+
+        int[] poke = {3,3,1,2,3,2};
+
+        int answer = 0;
+
+/*              [3,1,2,3]	2
+                [3,3,3,2,2,4]	3
+                [3,3,3,2,2,2]	2*/
+
+        int temp = 0;
+
+        for(int i = 0; i < poke.length; i++){
+
+            if(poke[temp] != poke[i]){
+
+            }
+
+        }
 
 
 
 
     }
 
+
+
+    @Test
+    public void stringCheck(){
+
+        String s = "banana";
+//        "banana"	[-1, -1, -1, 2, 2, 2]
+//        "foobar"	[-1, -1, 1, -1, -1, -1]
+
+        int[] result = new int[s.length()];
+        String temp = "";
+        for(int i = 0; i < s.length(); i++) {
+
+            if(i == 0){
+                result[i] = -1;
+                temp += s.charAt(i);
+                continue;
+            }
+
+            if(temp.indexOf(s.charAt(i)) == -1){
+                result[i] = -1;
+                temp += s.charAt(i);
+                continue;
+            }
+
+            if(temp.indexOf(s.charAt(i)) > -1) {
+                result[i] =  i - temp.lastIndexOf(s.charAt(i));
+                temp += s.charAt(i);
+            }
+        }
+
+        System.out.println(Arrays.toString(result));
+
+
+
+
+    }
 
 }
