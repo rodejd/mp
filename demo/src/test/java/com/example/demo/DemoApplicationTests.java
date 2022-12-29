@@ -2,13 +2,13 @@ package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.parameters.P;
-import org.springframework.util.LinkedMultiValueMap;
 
+import java.lang.reflect.Array;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @SpringBootTest
 class DemoApplicationTests {
@@ -703,5 +703,128 @@ class DemoApplicationTests {
 
 
     }
+
+
+    @Test
+    public void getCalender(){
+
+        int a = 5;
+        int b = 24;
+
+        LocalDate localDate = LocalDate.of(2016, a, b);
+
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+
+        System.out.println(dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US).toUpperCase(Locale.ROOT));
+
+    }
+
+    @Test
+    public void getCenterString() {
+
+        String a = "abcdde";
+
+        String answer = "";
+
+        if(a.length() % 2 != 0){
+            answer += a.charAt(a.length() / 2);
+        } else {
+            answer += a.charAt(a.length() / 2 - 1);
+            answer += a.charAt(a.length() / 2);
+        }
+
+        System.out.println(answer);
+
+    }
+
+    @Test
+    public void removeSameNumberInArray(){
+
+        int[] arr = {1,1,3,3,0,1,1};
+
+/*        String temp = "";
+
+        for(int i = 0; i < arr.length; i++){
+            if(temp == ""){
+                temp += arr[i];
+                continue;
+            }
+            if(arr[i-1] != arr[i]){
+                temp += arr[i];
+            }
+        }
+
+        int[] answer = Stream.of(temp.split("")).mapToInt(Integer::parseInt).toArray();*/
+
+
+        Stack<Integer> result = new Stack<Integer>();
+
+        for(int i = 0; i < arr.length; i++){
+
+            if(result.isEmpty()){
+                result.push(arr[i]);
+                continue;
+            }
+
+            if(result.peek() != arr[i]){
+                result.push(arr[i]);
+            }
+
+        }
+
+        int[] answer = new int[result.size()];
+
+        for(int i = result.size() - 1; i >= 0; i--){
+            answer[i] = result.peek();
+            result.pop();
+        }
+
+        System.out.println(Arrays.toString(answer));
+        System.out.println(result);
+
+
+    }
+
+
+
+    @Test
+    public void arrayElements(){
+
+        int[] arr = {2, 36, 1, 3};
+        int divisor = 1;
+
+
+        int[] test = Arrays.stream(arr).filter(f -> f % divisor == 0).toArray();
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] % divisor == 0){
+                queue.add(arr[i]);
+            }
+        }
+
+        int[] answer;
+
+        if(queue.size() == 0){
+            answer = new int[]{-1};
+        } else {
+            answer = new int[queue.size()];
+
+            for(int i = 0; i < queue.size()+i; i++){
+                answer[i] = queue.peek();
+                queue.poll();
+            }
+        }
+
+
+
+
+        System.out.println(Arrays.toString(answer));
+
+    }
+
+
+
 
 }
