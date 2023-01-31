@@ -3,12 +3,12 @@ package com.example.demo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @SpringBootTest
 class DemoApplicationTests {
@@ -545,13 +545,14 @@ class DemoApplicationTests {
 
         for (int i = 0; i < t.length() - p.length() + 1; i++) {
             System.out.println(p.length() + i);
-            if (Long.parseLong(t.substring(i, p.length() + i)) <= Long.parseLong(p)){
+            if (Long.parseLong(t.substring(i, p.length() + i)) <= Long.parseLong(p)) {
                 answer++;
-            };
+            }
+            ;
         }
 
 
-        System.out.println( "answer : " + answer);
+        System.out.println("answer : " + answer);
 
 //        String[] a = {t.substring(0,2), }
 
@@ -560,25 +561,25 @@ class DemoApplicationTests {
 
 
     @Test
-    public void removeStringPair(){
+    public void removeStringPair() {
         int answer = 0;
 
         String s = "abbcdaadca";
 
         Stack<Character> stack = new Stack<>();
 
-        for(int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
 
             char c = s.charAt(i);
 
-            if(!stack.isEmpty() || stack.peek().equals(c)){
+            if (!stack.isEmpty() || stack.peek().equals(c)) {
                 stack.pop();
             } else {
                 stack.push(c);
             }
         }
 
-        if(stack.size() == 0) {
+        if (stack.size() == 0) {
             answer = 1;
         }
 
@@ -587,19 +588,18 @@ class DemoApplicationTests {
     }
 
     @Test
-    public void postBox(){
+    public void postBox() {
 
         Stack<Integer> subStack = new Stack<>();
         PriorityQueue<Integer> queue = new PriorityQueue<>();
 
-        int[] order = {4,3,1,2,5};
+        int[] order = {4, 3, 1, 2, 5};
         int answer = 0;
         int nowBox = 1;
 
-        for(int i = 1; i <= order.length; i++){
+        for (int i = 1; i <= order.length; i++) {
             queue.add(order[i]);
         }
-
 
 
         System.out.println(answer);
@@ -609,16 +609,14 @@ class DemoApplicationTests {
 
 
     @Test
-    public void asdasd(){
-        int[] order = {4,3,1,2,5};
+    public void asdasd() {
+        int[] order = {4, 3, 1, 2, 5};
         int answer = 0;
         Stack<Integer> assistance = new Stack<>();
         int i = 0;
 
-        for(int box = 1; box <= order.length; box++)
-        {
-            if(order[i] != box)
-            {
+        for (int box = 1; box <= order.length; box++) {
+            if (order[i] != box) {
                 assistance.add(box);
                 continue;
             }
@@ -626,8 +624,7 @@ class DemoApplicationTests {
             i++;
             answer++;
 
-            while (assistance.size() != 0 && order[i] == assistance.peek())
-            {
+            while (assistance.size() != 0 && order[i] == assistance.peek()) {
                 assistance.pop();
                 i++;
                 answer++;
@@ -640,10 +637,10 @@ class DemoApplicationTests {
 
 
     @Test
-    public void findPair(){
+    public void findPair() {
 
 
-        int[] poke = {3,3,1,2,3,2};
+        int[] poke = {3, 3, 1, 2, 3, 2};
 
         int answer = 0;
 
@@ -653,23 +650,20 @@ class DemoApplicationTests {
 
         int temp = 0;
 
-        for(int i = 0; i < poke.length; i++){
+        for (int i = 0; i < poke.length; i++) {
 
-            if(poke[temp] != poke[i]){
+            if (poke[temp] != poke[i]) {
 
             }
 
         }
 
 
-
-
     }
 
 
-
     @Test
-    public void stringCheck(){
+    public void stringCheck() {
 
         String s = "banana";
 //        "banana"	[-1, -1, -1, 2, 2, 2]
@@ -677,22 +671,22 @@ class DemoApplicationTests {
 
         int[] result = new int[s.length()];
         String temp = "";
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
 
-            if(i == 0){
+            if (i == 0) {
                 result[i] = -1;
                 temp += s.charAt(i);
                 continue;
             }
 
-            if(temp.indexOf(s.charAt(i)) == -1){
+            if (temp.indexOf(s.charAt(i)) == -1) {
                 result[i] = -1;
                 temp += s.charAt(i);
                 continue;
             }
 
-            if(temp.indexOf(s.charAt(i)) > -1) {
-                result[i] =  i - temp.lastIndexOf(s.charAt(i));
+            if (temp.indexOf(s.charAt(i)) > -1) {
+                result[i] = i - temp.lastIndexOf(s.charAt(i));
                 temp += s.charAt(i);
             }
         }
@@ -700,13 +694,11 @@ class DemoApplicationTests {
         System.out.println(Arrays.toString(result));
 
 
-
-
     }
 
 
     @Test
-    public void getCalender(){
+    public void getCalender() {
 
         int a = 5;
         int b = 24;
@@ -726,7 +718,7 @@ class DemoApplicationTests {
 
         String answer = "";
 
-        if(a.length() % 2 != 0){
+        if (a.length() % 2 != 0) {
             answer += a.charAt(a.length() / 2);
         } else {
             answer += a.charAt(a.length() / 2 - 1);
@@ -738,9 +730,9 @@ class DemoApplicationTests {
     }
 
     @Test
-    public void removeSameNumberInArray(){
+    public void removeSameNumberInArray() {
 
-        int[] arr = {1,1,3,3,0,1,1};
+        int[] arr = {1, 1, 3, 3, 0, 1, 1};
 
 /*        String temp = "";
 
@@ -759,14 +751,14 @@ class DemoApplicationTests {
 
         Stack<Integer> result = new Stack<Integer>();
 
-        for(int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
 
-            if(result.isEmpty()){
+            if (result.isEmpty()) {
                 result.push(arr[i]);
                 continue;
             }
 
-            if(result.peek() != arr[i]){
+            if (result.peek() != arr[i]) {
                 result.push(arr[i]);
             }
 
@@ -774,7 +766,7 @@ class DemoApplicationTests {
 
         int[] answer = new int[result.size()];
 
-        for(int i = result.size() - 1; i >= 0; i--){
+        for (int i = result.size() - 1; i >= 0; i--) {
             answer[i] = result.peek();
             result.pop();
         }
@@ -782,13 +774,11 @@ class DemoApplicationTests {
         System.out.println(Arrays.toString(answer));
         System.out.println(result);
 
-
     }
 
 
-
     @Test
-    public void arrayElements(){
+    public void arrayElements() {
 
         int[] arr = {2, 36, 1, 3};
         int divisor = 1;
@@ -798,32 +788,140 @@ class DemoApplicationTests {
 
         PriorityQueue<Integer> queue = new PriorityQueue<>();
 
-        for(int i = 0; i < arr.length; i++){
-            if(arr[i] % divisor == 0){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % divisor == 0) {
                 queue.add(arr[i]);
             }
         }
 
         int[] answer;
 
-        if(queue.size() == 0){
+        if (queue.size() == 0) {
             answer = new int[]{-1};
         } else {
             answer = new int[queue.size()];
 
-            for(int i = 0; i < queue.size()+i; i++){
+            for (int i = 0; i < queue.size() + i; i++) {
                 answer[i] = queue.peek();
                 queue.poll();
             }
         }
 
-
-
-
         System.out.println(Arrays.toString(answer));
 
     }
 
+    @Test
+    public void betweenNumber() {
+
+        int a = 3;
+        int b = 7;
+
+        int result = 0;
+
+        for (int i = Math.min(a, b); i <= Math.max(a, b); i++) {
+            result = result + i;
+        }
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void stringSort() {
+
+        String[] a = {"sun", "bed", "car"};
+        int n = 1;
+
+        String[] result = new String[a.length];
+        for (int i = 0; i < a.length; i++) {
+            result[i] = String.valueOf(a[i].charAt(n));
+        }
+
+        Stream<String> check = Arrays.stream(result).sorted(Comparator.reverseOrder());
+
+        String[] output = new String[a.length];
+        for (int i = 0; i < a.length; i++) {
+            int idx = i;
+
+//            output[i] = Arrays.stream(a).filter(t -> t.charAt(n) == check.filter(s -> s.equals(t))).findFirst();
+        }
+
+    }
+
+
+    @Test
+    public void upperSort() {
+        String answer = "";
+
+        String s = "pPoooyY";
+
+        s = s.toLowerCase(Locale.ROOT);
+
+        String upper = "";
+
+        if (charCnt(s, 'p') - charCnt(s, 'y') == 0) {
+            System.out.println("True");
+        }
+
+    }
+
+
+    public int charCnt(String s, char c) {
+        int cnt = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.toLowerCase(s.charAt(i)) == c || Character.toUpperCase(s.charAt(i)) == c) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+
+    @Test
+    public void findKimSeoBang() {
+
+
+        String[] s = {"Jane", "Kim"};
+
+        String result = "김서방은 %s에 있다";
+
+        for (int i = 0; i < s.length; i++) {
+            if (s[i] == "Kim") {
+                result = String.format(result, i);
+            }
+        }
+
+        System.out.println(result);
+
+    }
+
+
+    public String solution(String[] seoul) {
+        String answer = "";
+        String result = "김서방은 %s에 있다";
+
+        for (int i = 0; i < seoul.length; i++) {
+            if (seoul[i] == "Kim") {
+                answer = String.format(result, i);
+            }
+        }
+
+        return answer;
+    }
+
+    public String solution(String[] seoul) {
+        String answer = "";
+        String result = "김서방은 %s에 있다";
+
+        for (int i = 0; i < seoul.length; i++) {
+            if (seoul[i] == "Kim") {
+                answer = String.format(result, i);
+            }
+        }
+
+        return answer;
+    }
 
 
 
