@@ -910,19 +910,6 @@ class DemoApplicationTests {
         return answer;
     }
 
-    public String solution(String[] seoul) {
-        String answer = "";
-        String result = "김서방은 %s에 있다";
-
-        for (int i = 0; i < seoul.length; i++) {
-            if (seoul[i] == "Kim") {
-                answer = String.format(result, i);
-            }
-        }
-
-        return answer;
-    }
-
 
 
 }
