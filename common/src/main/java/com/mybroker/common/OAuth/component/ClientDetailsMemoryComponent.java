@@ -30,38 +30,6 @@ public class ClientDetailsMemoryComponent {
         this.oauthClientDetailsRepository = oauthClientDetailsRepository;
     }
 
-    @PostConstruct
-    @Scheduled(fixedDelay = 60000)
-    public void initClientDetailDataLoad() {
-
-        List<OauthClientDetails> oauthClientDetailsList = oauthClientDetailsRepository.findAll();
-
-        synchronized (_lockMemoryUpload) {
-
-            clientDetailsMemoryMap.clear();
-
-            oauthClientDetailsList.forEach(oauthClientDetails -> {
-
-                SiteAuthClient siteAuthClient = SiteAuthClient.builder()
-                        .clientId(oauthClientDetails.getClientId())
-                        .resourceIds(oauthClientDetails.getResourceIds())
-                        .isSecretRequired(0)
-                        .clientSecret(oauthClientDetails.getClientSecret())
-                        .isScoped(0)
-                        .scope(oauthClientDetails.getScope())
-                        .authorizedGrantTypes(oauthClientDetails.getAuthorizedGrantTypes())
-                        .registeredRedirectUri(oauthClientDetails.getWebServerRedirectUri())
-                        .accessTokenValiditySeconds(oauthClientDetails.getAccessTokenValidity())
-                        .refreshTokenValiditySeconds(oauthClientDetails.getRefreshTokenValidity())
-                        .isAutoApprove(0)
-                        .additionalInformation(new HashMap<>())
-                        .authorities(oauthClientDetails.getAuthorities())
-                        .build();
-
-                clientDetailsMemoryMap.put(oauthClientDetails.getClientId(), siteAuthClient);
-            });
-        }
-    }
 
     public static SiteAuthClient getSiteAuthClientDetails(String clientId) {
         synchronized (_lockMemoryUpload) {
