@@ -30,7 +30,7 @@ public class AccountService implements UserDetailsService {
 
         Account account = new Account();
         account.setId("dall011@naver.com");
-        account.setPwd(passwordEncoder.encode("abc"));
+        account.setPassword(passwordEncoder.encode("abc"));
 
         UserDetails userDetails = new UserDetails() {
 
@@ -40,11 +40,12 @@ public class AccountService implements UserDetailsService {
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
+                return authorities;
             }
 
             @Override
             public String getPassword() {
-                return account.getPwd();
+                return account.getPassword();
             }
 
             @Override
